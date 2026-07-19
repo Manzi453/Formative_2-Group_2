@@ -1,0 +1,40 @@
+########## DEMO 1: VALID / AUTHORIZED TRANSACTION ##########
+============================================================
+STEP 1: Facial recognition
+  Input: images/EXAMPLE_MEMBER/smiling.jpg
+  Result: {'authorized': True, 'identity': 'EXAMPLE_MEMBER', 'confidence': 0.995, 'distance': 5.652601419895014}
+  Face recognized as: EXAMPLE_MEMBER
+
+STEP 2: Voiceprint verification
+  Input: audio/EXAMPLE_MEMBER/phrase2.wav
+  Result: {'authorized': True, 'identity': 'EXAMPLE_MEMBER', 'confidence': 0.83, 'distance': 456.28166658970775}
+  Voice recognized as: EXAMPLE_MEMBER
+
+  ACCESS GRANTED for EXAMPLE_MEMBER.
+
+STEP 3: Product recommendation
+  (no record for customer_id=178, sampling one instead)
+  Customer ID used for input features: 120
+  Predicted product category: Groceries  (confidence: 0.70)
+============================================================
+
+########## DEMO 2: UNAUTHORIZED ATTEMPT -- unrecognized face ##########
+============================================================
+STEP 1: Facial recognition
+  Input: images/UNAUTHORIZED_ATTEMPT/neutral.jpg
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.585, 'distance': 19.965557918647026}
+
+  ACCESS DENIED — face not recognized.
+
+########## DEMO 3: UNAUTHORIZED ATTEMPT -- unrecognized voice (face alone is not enough) ##########
+============================================================
+STEP 1: Facial recognition
+  Input: images/EXAMPLE_MEMBER_2/neutral.jpg
+  Result: {'authorized': True, 'identity': 'EXAMPLE_MEMBER_2', 'confidence': 0.995, 'distance': 4.113963810016802}
+  Face recognized as: EXAMPLE_MEMBER_2
+
+STEP 2: Voiceprint verification
+  Input: audio/UNAUTHORIZED_ATTEMPT/phrase1.wav
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.58, 'distance': 818.9574272365165}
+
+  ACCESS DENIED — voice not recognized.
