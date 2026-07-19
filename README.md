@@ -27,7 +27,7 @@ formative2_package/
     └── README.md                     # design notes specific to Tasks 4–5
 ```
 
-Team members: **Musana, Amaliza, Vestine, Emmanuel**.
+Team members: ** Ivan Manzi Musana, Amaliza shalom , Vestine Umukundwa , Emmanuel Nsabagasani **.
 
 ## IMPORTANT — what's real vs placeholder
 
