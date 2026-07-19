@@ -1,6 +1,7 @@
-########## DEMO 1: VALID / AUTHORIZED TRANSACTION ##########
+########## DEMO 1: VALID / AUTHORIZED TRANSACTION (emmanuel) ##########
 ============================================================
 STEP 1: Facial recognition
+<<<<<<< HEAD
   Input: images/musana/smiling.jpg
   Result: {'authorized': True, 'identity': 'musana', 'confidence': 0.975, 'distance': 4.048734144598118}
   Face recognized as: musana
@@ -16,13 +17,34 @@ STEP 3: Product recommendation
   (no record for customer_id=178, sampling one instead)
   Customer ID used for input features: 146
   Predicted product category: Groceries  (confidence: 0.26)
+=======
+  Input: images/emmanuel/smiling.jpg
+  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.995, 'distance': 9.330511331382795}
+  Face recognized as: emmanuel
+
+STEP 2: Voiceprint verification
+  Input: audio/emmanuel/phrase2.wav
+  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.655, 'distance': 2380.2162025967127}
+  Voice recognized as: emmanuel
+
+  ACCESS GRANTED for emmanuel.
+
+STEP 3: Product recommendation
+  (no record for customer_id=178, sampling one instead)
+  Customer ID used for input features: 129
+  Predicted product category: Electronics  (confidence: 0.70)
+>>>>>>> 4e2df3f458cad11170db2f02ecd666410413e060
 ============================================================
 
 ########## DEMO 2: UNAUTHORIZED ATTEMPT -- unrecognized face ##########
 ============================================================
 STEP 1: Facial recognition
   Input: images/UNAUTHORIZED_ATTEMPT/neutral.jpg
+<<<<<<< HEAD
   Result: {'authorized': False, 'identity': None, 'confidence': 0.29, 'distance': 43.53876352253075}
+=======
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.36, 'distance': 30.172988213224254}
+>>>>>>> 4e2df3f458cad11170db2f02ecd666410413e060
 
   ACCESS DENIED — face not recognized.
 
@@ -35,6 +57,10 @@ STEP 1: Facial recognition
 
 STEP 2: Voiceprint verification
   Input: audio/UNAUTHORIZED_ATTEMPT/phrase1.wav
+<<<<<<< HEAD
   Result: {'authorized': False, 'identity': None, 'confidence': 0.645, 'distance': 3866.714923833067}
+=======
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.675, 'distance': 4754.514978417958}
+>>>>>>> 4e2df3f458cad11170db2f02ecd666410413e060
 
   ACCESS DENIED — voice not recognized.
