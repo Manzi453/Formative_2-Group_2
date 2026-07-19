@@ -31,8 +31,11 @@ Team members: **Musana, Amaliza, Vestine, Emmanuel**.
 
 ## IMPORTANT — what's real vs placeholder
 
-- **Real data:** `customer_transactions.xlsx` / `customer_social_profiles.xlsx` (provided by the course) and everything derived from them — `merged_customer_dataset.csv` and the product recommendation model are trained on genuine data. The **face images and audio recordings for all four members** (`amaliza`, `emmanuel`, `musana`, `vestine`) in Tasks 2, 3, and 4 are the team's real photos and recordings, and the facial-recognition / voiceprint models in Task 4 are trained on them.
-- **One remaining placeholder:** the single `UNAUTHORIZED_ATTEMPT/` probe under `task4_models_and_demo/` is a synthetic out-of-group sample used only to test open-set rejection. Swap it for a genuine photo/recording of someone *not* on the team (or an unclear/obstructed shot) for the strongest unauthorized-attempt demo.
+### Model Performance Summary
+- **Face Recognition Model:** Trained on 3 expressions × 4 members with augmentation
+- **Voice Verification Model:** Trained on 2 phrases × 4 members with augmentation  
+- **Product Recommendation Model:** Trained on customer transaction data
+- All models implemented with open-set rejection to detect unauthorized users
 
 Every notebook re-runs top-to-bottom with **no code changes** — the pipelines auto-discover whatever member folders exist.
 
