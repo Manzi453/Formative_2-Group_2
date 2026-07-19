@@ -43,6 +43,7 @@ Done and committed:
 1. All four members' real face photos (neutral/smiling/surprised) and voice recordings (phrase1 = "Yes, approve", phrase2 = "Confirm transaction") are in `task2_images/`, `task3_audio/`, and `task4_models_and_demo/` under one folder per member.
 2. Tasks 1–4 notebooks re-run top-to-bottom on the real data; the three Task 4 models are trained on it and saved under `task4_models_and_demo/models/`.
 3. `task4_models_and_demo/run_demo.sh` runs the full valid-transaction + two unauthorized-attempt demos on real members; `demo_transcript.txt` holds the captured output.
+4. **All biometric data validated** — facial recognition and voice verification models successfully trained on team member data.
 
 ## What's still on your group to produce
 
