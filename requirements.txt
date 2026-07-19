@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn
+scipy
+pillow
+scikit-image
+librosa
+soundfile
+matplotlib
+seaborn
+joblib
+openpyxl
+nbformat
+nbconvert
+ipykernel
