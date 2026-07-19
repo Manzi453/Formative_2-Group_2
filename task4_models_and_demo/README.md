@@ -15,7 +15,7 @@ The facial-recognition and voiceprint models here are trained on the **real team
 - `amaliza`, `emmanuel`, `musana`, `vestine` — each with 3 facial expressions (`neutral`/`smiling`/`surprised`) and 2 spoken phrases (`phrase1.wav` = "Yes, approve", `phrase2.wav` = "Confirm transaction"), expanded by the Task 2/3 augmentations.
 - `UNAUTHORIZED_ATTEMPT` — a single out-of-group probe sample, **held out of training entirely**, used only to verify the models reject an unknown identity. This is the one remaining placeholder: swap it for a real photo/recording of someone not on the team (or an unclear/obstructed shot) before the final submission.
 
-The `images/` and `audio/` files here are copied from Tasks 2–3 (vestine's `.jpeg` photos and musana's differently-named recordings are normalized to the shared `neutral.jpg`/`phrase1.wav` convention so training paths, the feature CSVs, and the CLI all agree). Re-running `task4_models.ipynb` top to bottom retrains on whatever member folders exist — no code changes needed — then re-run `run_demo.sh`.
+The `images/` and `audio/` files here are copied from Tasks 2–3 (any of `.jpg` / `.jpeg` / `.png` for faces and `.wav` / `.mp3` / `.flac` / `.m4a` / `.mp4` for audio is fine — e.g. Emmanuel's photos are `.png` and recordings are `.mp4`, Vestine's photos are `.jpeg` — and musana's differently-named recordings are normalized to the shared `phrase1`/`phrase2` convention so training paths, the feature CSVs, and the CLI all agree). Re-running `task4_models.ipynb` top to bottom retrains on whatever member folders exist — no code changes needed — then re-run `run_demo.sh`.
 
 ## How the open-set rejection works
 
@@ -28,7 +28,7 @@ A sample must pass **both** to be accepted; otherwise the CLI prints `ACCESS DEN
 ## Running the demo yourself
 
 ```bash
-python3 cli_app.py --face images/emmanuel/smiling.jpg --voice audio/emmanuel/phrase2.wav
+python3 cli_app.py --face images/emmanuel/smiling.png --voice audio/emmanuel/phrase2.mp4 --customer-id 178
 ```
 
 or re-run the whole scripted demo:
