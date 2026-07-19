@@ -6,16 +6,16 @@
 - `cli_app.py` — the command-line app: face auth -> voice auth -> product recommendation
 - `run_demo.sh` / `demo_transcript.txt` — the three required simulations (1 valid transaction, 2 unauthorized attempts) and their captured output
 - `models/*.joblib` — the trained models + label encoders + open-set rejection thresholds
-- `image_features.csv`, `audio_features.csv` — extended with a second placeholder identity + an `UNAUTHORIZED_ATTEMPT` probe (see note below)
+- `image_features.csv`, `audio_features.csv` — the **real team features** (4 members) from Tasks 2–3 + one held-out `UNAUTHORIZED_ATTEMPT` probe (see note below)
 - `merged_customer_dataset.csv` — copied from Task 1, used by the product recommendation model
 
-## Why this folder has extra placeholder identities beyond Task 2/3
+## Identities in this folder
 
-Facial recognition and voiceprint verification are only meaningful with **more than one class** to discriminate between, plus a genuine "unknown" test case — a single identity gives trivially perfect accuracy and nothing to reject. So this folder's `images/` and `audio/` extend Task 2/3's placeholder set with:
-- `EXAMPLE_MEMBER_2` — a second synthetic identity (still not a real photo/recording)
-- `UNAUTHORIZED_ATTEMPT` — a synthetic probe sample, held out of training entirely, used only to test that the models correctly reject it
+The facial-recognition and voiceprint models here are trained on the **real team data** collected in Tasks 2–3 — one authorized identity per member:
+- `amaliza`, `emmanuel`, `musana`, `vestine` — each with 3 facial expressions (`neutral`/`smiling`/`surprised`) and 2 spoken phrases (`phrase1.wav` = "Yes, approve", `phrase2.wav` = "Confirm transaction"), expanded by the Task 2/3 augmentations.
+- `UNAUTHORIZED_ATTEMPT` — a single out-of-group probe sample, **held out of training entirely**, used only to verify the models reject an unknown identity. This is the one remaining placeholder: swap it for a real photo/recording of someone not on the team (or an unclear/obstructed shot) before the final submission.
 
-**When your group adds real data:** put one real folder per teammate under `images/` and `audio/` here (same `neutral.jpg`/`smiling.jpg`/`surprised.jpg` and `phrase1.wav`/`phrase2.wav` convention as Tasks 2–3), plus one genuine "unauthorized attempt" sample (a photo/recording of someone *not* on the team, or an unclear/obstructed shot). Re-run `task4_models.ipynb` top to bottom — no code changes needed — then re-run `run_demo.sh` pointing at real file paths.
+The `images/` and `audio/` files here are copied from Tasks 2–3 (vestine's `.jpeg` photos and musana's differently-named recordings are normalized to the shared `neutral.jpg`/`phrase1.wav` convention so training paths, the feature CSVs, and the CLI all agree). Re-running `task4_models.ipynb` top to bottom retrains on whatever member folders exist — no code changes needed — then re-run `run_demo.sh`.
 
 ## How the open-set rejection works
 
@@ -28,7 +28,7 @@ A sample must pass **both** to be accepted; otherwise the CLI prints `ACCESS DEN
 ## Running the demo yourself
 
 ```bash
-python3 cli_app.py --face images/EXAMPLE_MEMBER/smiling.jpg --voice audio/EXAMPLE_MEMBER/phrase2.wav
+python3 cli_app.py --face images/emmanuel/smiling.jpg --voice audio/emmanuel/phrase2.wav
 ```
 
 or re-run the whole scripted demo:
@@ -39,6 +39,7 @@ bash run_demo.sh
 
 ## Known limitations (worth stating plainly in your report)
 
-- Facial/voiceprint accuracy is measured on **synthetic placeholder data** — real photos/recordings will behave differently (likely harder, more realistic).
-- The product recommendation model's accuracy (~17%, roughly chance for 5 classes) reflects genuinely weak correlation between the available social/transaction features and purchased category in this dataset (see Task 1's correlation heatmap) — not a bug. More/better features or more transaction history per customer would be needed for real predictive power.
+- Facial/voiceprint accuracy is measured on the **real team data** (4 members), but each member contributes only a few source samples expanded by augmentation. The stratified train/test split can place near-duplicate augmented variants on both sides, so the high biometric scores show the pipeline cleanly separates *these* members — not a large-scale benchmark. More sessions/photos per member would give a firmer estimate.
+- The `UNAUTHORIZED_ATTEMPT` probe is currently a single synthetic out-of-group sample. Replace it with a genuine non-member photo/recording for the strongest open-set demonstration.
+- The product recommendation model's modest accuracy reflects genuinely weak correlation between the available social/transaction features and purchased category in this dataset (see Task 1's correlation heatmap) — not a bug. More/better features or more transaction history per customer would be needed for real predictive power.
 - The CLI's product-recommendation step pulls from `merged_customer_dataset.csv` by `customer_id`, which is **not** the same identity space as the face/voice biometrics (one is e-commerce customers, the other is your team) — a simplification made because the assignment's two data sources (customer transactions and team biometrics) aren't naturally linked. State this explicitly as a design decision in your report.
