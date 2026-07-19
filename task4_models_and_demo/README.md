@@ -12,7 +12,7 @@
 ## Identities in this folder
 
 The facial-recognition and voiceprint models here are trained on the **real team data** collected in Tasks 2–3 — one authorized identity per member:
-- `amaliza`, `emmanuel`, `musana`, `vestine` — each with 3 facial expressions (`neutral`/`smiling`/`surprised`) and 2 spoken phrases (`phrase1.wav` = "Yes, approve", `phrase2.wav` = "Confirm transaction"), expanded by the Task 2/3 augmentations.
+- `amaliza`, `emmanuel`, `musana`, `vestine` — each with 3 facial expressions (`neutral`/`smiling`/`surprised`) and 2 spoken phrases (`phrase1` = "Yes, approve", `phrase2` = "Confirm transaction"), expanded by the Task 2/3 augmentations.
 - `UNAUTHORIZED_ATTEMPT` — a single out-of-group probe sample, **held out of training entirely**, used only to verify the models reject an unknown identity. This is the one remaining placeholder: swap it for a real photo/recording of someone not on the team (or an unclear/obstructed shot) before the final submission.
 
 The `images/` and `audio/` files here are copied from Tasks 2–3 (any of `.jpg` / `.jpeg` / `.png` for faces and `.wav` / `.mp3` / `.flac` / `.m4a` / `.mp4` for audio is fine — e.g. Emmanuel's photos are `.png` and recordings are `.mp4`, Vestine's photos are `.jpeg` — and musana's differently-named recordings are normalized to the shared `phrase1`/`phrase2` convention so training paths, the feature CSVs, and the CLI all agree). Re-running `task4_models.ipynb` top to bottom retrains on whatever member folders exist — no code changes needed — then re-run `run_demo.sh`.
@@ -43,3 +43,4 @@ bash run_demo.sh
 - The `UNAUTHORIZED_ATTEMPT` probe is currently a single synthetic out-of-group sample. Replace it with a genuine non-member photo/recording for the strongest open-set demonstration.
 - The product recommendation model's modest accuracy reflects genuinely weak correlation between the available social/transaction features and purchased category in this dataset (see Task 1's correlation heatmap) — not a bug. More/better features or more transaction history per customer would be needed for real predictive power.
 - The CLI's product-recommendation step pulls from `merged_customer_dataset.csv` by `customer_id`, which is **not** the same identity space as the face/voice biometrics (one is e-commerce customers, the other is your team) — a simplification made because the assignment's two data sources (customer transactions and team biometrics) aren't naturally linked. State this explicitly as a design decision in your report.
+- Face and voice identity are linked by the **enrolment label** (folder name), not a joint biometric model: two independent classifiers must independently output the same name.
