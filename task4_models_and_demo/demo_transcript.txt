@@ -1,28 +1,28 @@
 ########## DEMO 1: VALID / AUTHORIZED TRANSACTION (emmanuel) ##########
 ============================================================
 STEP 1: Facial recognition
-  Input: images/emmanuel/smiling.jpg
-  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.995, 'distance': 9.330511331382795}
+  Input: images/emmanuel/smiling.png
+  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.98, 'distance': 26.063366980384046}
   Face recognized as: emmanuel
 
 STEP 2: Voiceprint verification
   Input: audio/emmanuel/phrase2.wav
-  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.655, 'distance': 2380.2162025967127}
+  Result: {'authorized': True, 'identity': 'emmanuel', 'confidence': 0.805, 'distance': 1884.493432828668}
   Voice recognized as: emmanuel
 
   ACCESS GRANTED for emmanuel.
 
 STEP 3: Product recommendation
   (no record for customer_id=178, sampling one instead)
-  Customer ID used for input features: 129
-  Predicted product category: Electronics  (confidence: 0.70)
+  Customer ID used for input features: 150
+  Predicted product category: Books  (confidence: 0.49)
 ============================================================
 
 ########## DEMO 2: UNAUTHORIZED ATTEMPT -- unrecognized face ##########
 ============================================================
 STEP 1: Facial recognition
   Input: images/UNAUTHORIZED_ATTEMPT/neutral.jpg
-  Result: {'authorized': False, 'identity': None, 'confidence': 0.36, 'distance': 30.172988213224254}
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.51, 'distance': 55.48504000622135}
 
   ACCESS DENIED — face not recognized.
 
@@ -30,11 +30,11 @@ STEP 1: Facial recognition
 ============================================================
 STEP 1: Facial recognition
   Input: images/amaliza/neutral.jpg
-  Result: {'authorized': True, 'identity': 'amaliza', 'confidence': 0.995, 'distance': 8.596990254800788}
+  Result: {'authorized': True, 'identity': 'amaliza', 'confidence': 0.94, 'distance': 26.4133463253132}
   Face recognized as: amaliza
 
 STEP 2: Voiceprint verification
   Input: audio/UNAUTHORIZED_ATTEMPT/phrase1.wav
-  Result: {'authorized': False, 'identity': None, 'confidence': 0.675, 'distance': 4754.514978417958}
+  Result: {'authorized': False, 'identity': None, 'confidence': 0.31, 'distance': 1058.5033605468354}
 
   ACCESS DENIED — voice not recognized.
