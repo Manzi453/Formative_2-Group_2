@@ -63,5 +63,6 @@ Done and committed:
 - The system-demonstration video (record yourselves running `run_demo.sh`).
 - Push the repository to GitHub with each member's contribution summary.
 
+
 ### Environment note
 The notebooks were executed with a local virtualenv (`.venv/`, `pip install -r requirements.txt`) registered as a Jupyter kernel. Any Python 3.10–3.13 environment with `requirements.txt` installed works.
