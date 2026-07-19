@@ -28,9 +28,9 @@ formative2_package/
 ```
 
 Team members: Ivan Manzi Musana
-              Amaliza shalom 
-              Vestine Umukundwa 
-              Emmanuel Nsabagasani
+              ,Amaliza shalom 
+              ,Vestine Umukundwa 
+              ,Emmanuel Nsabagasani.
 
 ## IMPORTANT — what's real vs placeholder
 
