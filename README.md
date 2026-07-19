@@ -42,6 +42,11 @@ Team members: **Musana, Amaliza, Vestine, Emmanuel**.
 
 Every notebook re-runs top-to-bottom with **no code changes** — the pipelines auto-discover whatever member folders exist.
 
+#### Security Testing Strategy
+- Open-set rejection verified using UNAUTHORIZED_ATTEMPT probes
+- Both confidence threshold and centroid distance checks required
+- Multi-modal biometric fusion (face + voice) for transaction authorization
+
 ## Status of work
 
 Done and committed:
